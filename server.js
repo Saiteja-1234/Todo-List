@@ -1,8 +1,22 @@
-require("dotenv").config();
-const todoLib = require("./backend/lib/todoLib");
-const mongoose = require("mongoose");
-const express = require('express');
-const { request } = require("express");
+// require("dotenv").config();
+
+// using the above line rather  use require
+// import dotenv from "dotenv";
+// dotenv.config();
+
+// OR
+
+import {config} from "dotenv";
+config();
+// const todoLib = require("./backend/lib/todoLib");
+
+import * as todoLib from "./backend/Lib/todoLib.js";
+// const mongoose = require("mongoose");
+import mongoose from "mongoose";
+// const express = require('express');
+import express,{request} from "express";
+// const { request } = require("express");
+
 const app = express();
 const port = process.env.PORT || 5010;
 const options = {
