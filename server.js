@@ -52,7 +52,8 @@ app.delete(("/api/todos/:todoid"), function(req, res) {
     todoLib.deleteTodoById(todoid, function(err, dbtodo) {
         if (err) {
             res.json({ status: "error", message: err, data: null });
-        } else {
+        }
+        else {
             res.json({ status: "success", data: dbtodo });
         }
     });
@@ -61,9 +62,6 @@ app.delete(("/api/todos/:todoid"), function(req, res) {
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/frontend/html/index.html");
 });
-// app.get("/todolist", function(req, res) {
-//     res.sendFile(__dirname + "/frontend/html/todolist.html");
-// });
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, {}, function(err) {
     if (err) {
