@@ -74,7 +74,8 @@ app.delete(("/api/todos/:todoid"), function(req, res) {
 });
 
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/frontend/html/index.html");
+    // instead of __dirname we can do porcess.cwd()
+    res.sendFile(process.cwd() + "/frontend/html/index.html");
 });
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, {}, function(err) {
