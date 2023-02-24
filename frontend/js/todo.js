@@ -6,6 +6,13 @@ inputbox.addEventListener("keydown",function(event){
             createTodo(inputbox.value)
      }
 });
+async function createtodo(){
+    createTodo(inputbox.value)
+}
+
+async function getAllCompletedTodos(){
+    
+}
 
 async function createTodo(text){
     await fetch("/api/todos",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({taskName:text})});
