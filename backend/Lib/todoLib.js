@@ -54,7 +54,7 @@ export async function getSingleTodoById(id,callback){
 export async function updateTodoById(id,data,callback){
     try{
         var todo = {
-            _id: id,
+            _id: new mongoose.Types.ObjectId(id),
         };
         var result = await todoModel.updateOne(todo,data);
         callback(null,result);
@@ -71,6 +71,26 @@ export const deleteTodoById = async function(id,callback){
         };
         var result = await todoModel.updateOne(todo,{isDeleted: true});
         callback(null,result);
+    }
+    catch(err){
+        callback(err,null);
+    }
+}
+
+export const getAllCompletedTodos = async function(callback){
+    try{
+        var todos = await todoModel.find({isCompleted: true,isDeleted: false});
+        callback(null,todos);
+    }
+    catch(err){
+        callback(err,null);
+    }
+}
+
+export const getAllDeletedTodos = async function(callback){
+    try{
+        var todos = await todoModel.find({isDeleted: true});
+        callback(null,todos);
     }
     catch(err){
         callback(err,null);

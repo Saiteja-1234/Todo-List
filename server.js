@@ -38,6 +38,29 @@ app.get("/api/todos", function(req, res) {
     });
 });
 
+
+app.get("/api/todos/completed",function(req,res){
+	todoLib.getAllCompletedTodos(function(err, todos){
+		if(err){
+			res.json({status: "error", message: err, data: null});
+		}
+		else{
+			res.json({status: "success", data: todos});
+		}
+	});
+});
+
+
+app.get("/api/todos/deleted",function(req,res){
+	todoLib.getAllDeletedTodos(function(err, todos){
+		if(err){
+			res.json({status: "error", message: err, data: null});
+		}
+		else{
+			res.json({status: "success", data: todos});
+		}
+	});
+});
 app.post("/api/todos", function(req, res) {
     const todo = req.body;
     todoLib.createTodo(todo, function(err, dbtodo) {
